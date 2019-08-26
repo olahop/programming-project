@@ -7,20 +7,20 @@ const int buttonPin = 2;          // button
 int buttonState;             // the current reading from the input pin
 int lastButtonState = HIGH;   // the previous reading from the input pin
 
-int startPressed = 0;
-int endPressed = 0;
+int startSym = 0;
+int endSym = 0;
 int pauseTime = 0;
 int message = 0;
-int holdTime = 0;
+int pressedTime = 0;
 
 
 
 // the following variables are unsigned longs because the time, measured in
 // milliseconds, will quickly become a bigger number than can be stored in an int.
-unsigned long lastDebounceTime = 0;  // the last time the output pin was toggled
-unsigned long debounceDelay = 50;    // the debounce time; increase if the output flickers
-unsigned long pause = millis(); 
-unsigned long holddown = 0;
+//unsigned long lastDebounceTime = 0;  // the last time the output pin was toggled
+//unsigned long debounceDelay = 50;    // the debounce time; increase if the output flickers
+//unsigned long pause = millis(); 
+//unsigned long holddown = 0;
 
 int T = 300;
 
@@ -32,6 +32,8 @@ void setup(){
   pinMode( ledRed, OUTPUT );    // Pin 6 is an output
   pinMode( buttonPin, INPUT);   // Takes in values from button
   Serial.begin(9600);            // Important for port output
+
+  endSym = millis();
   
   digitalWrite(ledGreen, HIGH); // set initial LED state
   digitalWrite(ledYellow, LOW); // set initial LED state
@@ -43,25 +45,26 @@ void setup(){
 
 void morse(){
   if (buttonState == LOW){
-    
-    digitalWrite(ledGreen, HIGH);
-    digitalWrite(ledYellow, LOW);
-    digitalWrite(ledRed, LOW);
-    
-    startPressed = millis();
-    pauseTime = startPressed - endPressed;
 
+    startSym = millis();
+    pauseTime = startSym - endSym;
+
+    
+    //digitalWrite(ledGreen, HIGH);
+    //digitalWrite(ledYellow, LOW);
+    //digitalWrite(ledRed, LOW);
+    
     //Short pause
     if (pauseTime <= T) {
-      message = 1;
+      message = 3;
     }
     //Medium pause
-    if (pauseTime > T && pauseTime <= 3*T) {
-      message = 2;
-    }
+    //if (pauseTime > T && pauseTime <= 3*T) {
+    //  message = 4;
+    //}
     //Long pause
     if (pauseTime > 3*T) {
-      message = 3;
+      message = 4;
     }
     
   }
@@ -69,26 +72,33 @@ void morse(){
   else{
     digitalWrite(ledGreen, LOW);
 
-    endPressed = millis();
-    holdTime = endPressed - startPressed;
+    endSym = millis();
+    pressedTime = endSym - startSym;
 
     //Short press - dot
-    if(holdTime<=T){
+    if(pressedTime<=T){
       digitalWrite(ledGreen, LOW);
       digitalWrite(ledYellow, HIGH);
       digitalWrite(ledRed, LOW);
 
-      message = 4;
-    }
+      message = 1;
+    };
 
     //Long press - dash
-    if(holdTime>T){
+    if(pressedTime>T){
       digitalWrite(ledGreen, LOW);
       digitalWrite(ledYellow, LOW);
       digitalWrite(ledRed, HIGH);
 
-      message = 5;
+      message = 2;
     }
+
+    delay(100);
+
+    digitalWrite(ledGreen, HIGH);
+    digitalWrite(ledYellow, LOW);
+    digitalWrite(ledRed, LOW);
+    
   }
 
   Serial.print(message);
