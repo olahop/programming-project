@@ -22,7 +22,7 @@ int pressedTime = 0;
 //unsigned long pause = millis(); 
 //unsigned long holddown = 0;
 
-int T = 300;
+int T = 150;
 
 //-----------------SETUP---------------------------------------
 
@@ -55,13 +55,13 @@ void morse(){
     //digitalWrite(ledRed, LOW);
     
     //Short pause
-    if (pauseTime <= T) {
+    //if (pauseTime <= T) {
+    //  message = 3;
+    //}
+    //Medium pause
+    if (pauseTime > 2*T && pauseTime <= 3*T) {
       message = 3;
     }
-    //Medium pause
-    //if (pauseTime > T && pauseTime <= 3*T) {
-    //  message = 4;
-    //}
     //Long pause
     if (pauseTime > 3*T) {
       message = 4;
