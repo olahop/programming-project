@@ -22,7 +22,7 @@ int pressedTime = 0;
 //unsigned long pause = millis(); 
 //unsigned long holddown = 0;
 
-int T = 150;
+int T = 500;
 
 //-----------------SETUP---------------------------------------
 
@@ -49,51 +49,45 @@ void morse(){
     startSym = millis();
     pauseTime = startSym - endSym;
 
-    
-    //digitalWrite(ledGreen, HIGH);
-    //digitalWrite(ledYellow, LOW);
-    //digitalWrite(ledRed, LOW);
-    
     //Short pause
-    //if (pauseTime <= T) {
-    //  message = 3;
-    //}
-    //Medium pause
-    if (pauseTime > 2*T && pauseTime <= 3*T) {
+    if (pauseTime <= T) {
       message = 3;
+    }
+    //Medium pause
+    if (pauseTime > T && pauseTime <= 3*T) {
+      message = 4;
     }
     //Long pause
     if (pauseTime > 3*T) {
-      message = 4;
+      message = 5;
     }
     
   }
 
-  else{
+  else {
     digitalWrite(ledGreen, LOW);
 
     endSym = millis();
     pressedTime = endSym - startSym;
 
     //Short press - dot
-    if(pressedTime<=T){
+    if(pressedTime<=0.6*T){
       digitalWrite(ledGreen, LOW);
       digitalWrite(ledYellow, HIGH);
       digitalWrite(ledRed, LOW);
+      delay(50);
 
       message = 1;
     };
 
     //Long press - dash
-    if(pressedTime>T){
+    if(pressedTime>0.6*T){
       digitalWrite(ledGreen, LOW);
       digitalWrite(ledYellow, LOW);
       digitalWrite(ledRed, HIGH);
 
       message = 2;
     }
-
-    delay(100);
 
     digitalWrite(ledGreen, HIGH);
     digitalWrite(ledYellow, LOW);

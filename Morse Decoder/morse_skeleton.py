@@ -11,9 +11,9 @@ import arduino_connect  # This is the key import so that you can access the seri
 
 _dot = 1
 _dash = 2
-_symbol_pause = 3
-_word_pause = 4
-_reset = 5
+_symbol_pause = 4
+_word_pause = 5
+_reset = None
 
 
 # Morse Code Class
@@ -59,39 +59,43 @@ class morsecoder():
     # consists of 2 ascii codes, hence the little for loop to cycle through each byte of the signal.
 
     def process_signal(self, signal):
-        if signal == (1 or 2) :
+        if (signal == 1 or signal == 2) :
             self.update_current_symbol(signal)
-        elif signal == 3:
-            self.handle_symbol_end()
         elif signal == 4:
+            self.handle_symbol_end()
+        elif signal == 5:
             self.handle_word_end()
-        else:
-            reset()
+        #else:
+        #    self.reset()
           
     def update_current_symbol(self, signal):
         self.current_symbol += str(signal-1)
+        if(len(self.current_symbol) > 5):
+            self.current_symbol = ''
+
 
     def handle_symbol_end(self):
-        self.update_current_word(self._morse_codes[self.current_symbol])
+        if self.current_symbol and (self.current_symbol in self._morse_codes):
+            morse_symbol = self._morse_codes[self.current_symbol]
+            self.update_current_word(morse_symbol)
 
     def update_current_word(self, symbol):
         self.current_word += symbol
+        print("Current word: " + self.current_word)
         self.current_symbol = ''
 
     def handle_word_end(self):
-        self.handle_symbol_end()
-        print(self.current_word)
-        self.current_word = ''
+        if(self.current_word):
+            self.handle_symbol_end()
+            print(self.current_word)
+            self.current_word = ''
 
     def decoding_loop(self):
         while True:
             s = self.read_one_signal(self.serial_port)
-            print(s)
             for byte in s:
                 self.process_signal(int(chr(byte)))
-     
-     # Dummy method           
-    def process_signal(self,sig): return True
+
     
 ''' To test if this is working, do the following in a Python command window:
 
