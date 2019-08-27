@@ -29,5 +29,5 @@ def pc_connect():
 #   The default will probably NOT work for your machine, but it may look quite similar, differing only
 #  in the final 4 digits.
 
-def basic_connect(arport='/dev/cu.usbmodem1451'):
+def basic_connect(arport='/dev/cu.usbserial-1410'):
     return serial.Serial(arport,9600,timeout=.1)

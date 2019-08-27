@@ -93,8 +93,9 @@ class morsecoder():
     def decoding_loop(self):
         while True:
             s = self.read_one_signal(self.serial_port)
+            print(s)
             for byte in s:
-                self.process_signal(int(chr(byte)))
+                self.process_signal(int(byte))
 
     
 ''' To test if this is working, do the following in a Python command window:

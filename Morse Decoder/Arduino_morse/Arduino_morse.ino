@@ -85,6 +85,7 @@ void morse(){
       digitalWrite(ledGreen, LOW);
       digitalWrite(ledYellow, LOW);
       digitalWrite(ledRed, HIGH);
+      delay(50);
 
       message = 2;
     }
