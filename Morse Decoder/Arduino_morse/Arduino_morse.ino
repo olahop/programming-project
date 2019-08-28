@@ -63,7 +63,7 @@ void morse(){
     pressedTime = endSym - startSym;
 
     //Short press - dot
-    if(pressedTime<=0.6*T){
+    if(pressedTime<=0.7*T){
       digitalWrite(ledGreen, LOW);
       digitalWrite(ledYellow, HIGH);
       digitalWrite(ledRed, LOW);
@@ -73,7 +73,7 @@ void morse(){
     };
 
     //Long press - dash
-    if(pressedTime>0.6*T){
+    if(pressedTime>0.7*T){
       digitalWrite(ledGreen, LOW);
       digitalWrite(ledYellow, LOW);
       digitalWrite(ledRed, HIGH);

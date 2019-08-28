@@ -97,7 +97,6 @@ class morsecoder():
     def decoding_loop(self):
         while True:
             s = self.read_one_signal(self.serial_port)
-            print(s)
             for byte in s:
                 self.process_signal(int(byte))
 
@@ -105,7 +104,7 @@ class morsecoder():
 ''' To test if this is working, do the following in a Python command window:
 
 > from morse_skeleton import *
-> m = mocoder()
+> m = morsecoder()
 > m.decoding_loop()
 
 If your Arduino is currently running and hooked up to the serial port, then this
