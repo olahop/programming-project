@@ -7,20 +7,12 @@ const int buttonPin = 2;          // button
 int buttonState;             // the current reading from the input pin
 int lastButtonState = HIGH;   // the previous reading from the input pin
 
-int startSym = 0;
-int endSym = 0;
-int pauseTime = 0;
-int message = 0;
-int pressedTime = 0;
+int startSym = 0;     // start the timing of button holddown
+int endSym = 0;       // start the timing of button letgo
+int pressedTime = 0;  // register the time when button was pressed
+int pauseTime = 0;    // register the time when button was not pressed
+int message = 0;      // the outgoing signal indicating what kind of message which should be sent
 
-
-
-// the following variables are unsigned longs because the time, measured in
-// milliseconds, will quickly become a bigger number than can be stored in an int.
-//unsigned long lastDebounceTime = 0;  // the last time the output pin was toggled
-//unsigned long debounceDelay = 50;    // the debounce time; increase if the output flickers
-//unsigned long pause = millis(); 
-//unsigned long holddown = 0;
 
 int T = 500;
 
@@ -101,12 +93,11 @@ void morse(){
 
 
 
-
-
 //--------- Loop-----------------------------------------------
 void loop(){
  buttonState = digitalRead(buttonPin);
 
+  // calls morse() if buttonstate is changed
   if (buttonState != lastButtonState) {
     morse();
   }
@@ -114,5 +105,4 @@ void loop(){
   delay(20);    //Debounce
 
   lastButtonState = buttonState;
-  
 }

@@ -58,6 +58,8 @@ class morsecoder():
     # of function 'int' on the string converts it automatically.   But, due to latencies, the signal sometimes
     # consists of 2 ascii codes, hence the little for loop to cycle through each byte of the signal.
 
+
+    # takes the signal as input and sorts which kind of message it is and how it should be prosessed
     def process_signal(self, signal):
         if (signal == 1 or signal == 2) :
             self.update_current_symbol(signal)
@@ -65,31 +67,33 @@ class morsecoder():
             self.handle_symbol_end()
         elif signal == 5:
             self.handle_word_end()
-        #else:
-        #    self.reset()
-          
+
+    # called if input is dot or dash to update current symbol
     def update_current_symbol(self, signal):
         self.current_symbol += str(signal-1)
         if(len(self.current_symbol) > 5):
             self.current_symbol = ''
 
-
+    # called if there is a short break in input
     def handle_symbol_end(self):
         if self.current_symbol and (self.current_symbol in self._morse_codes):
             morse_symbol = self._morse_codes[self.current_symbol]
             self.update_current_word(morse_symbol)
 
+    # called of a symbol is ended and the word needs to be updated
     def update_current_word(self, symbol):
         self.current_word += symbol
         print("Current word: " + self.current_word)
         self.current_symbol = ''
 
+    # called if there is a longer break in input
     def handle_word_end(self):
         if(self.current_word):
             self.handle_symbol_end()
             print(self.current_word)
             self.current_word = ''
 
+    # the listener for input from arduino
     def decoding_loop(self):
         while True:
             s = self.read_one_signal(self.serial_port)
