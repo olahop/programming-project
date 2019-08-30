@@ -27,21 +27,29 @@ class Game():
     # This is where the winner is decided
     def winner(self, player1_action, player2_action):
         if(player1_action == player2_action):
+            self.player1.add_points(0.5)
+            self.player2.add_points(0.5)
             return "No one"
         if(player1_action == "rock"):
             if(player2_action == "scissors"):
+                self.player1.add_points(1)
                 return self.player1
             else:
+                self.player2.add_points(1)
                 return self.player2
         elif(player1_action == "scissors"):
             if(player2_action == "paper"):
+                self.player1.add_points(1)
                 return self.player1
             else:
+                self.player2.add_points(1)
                 return self.player2
         elif(player1_action == "paper"):
             if(player2_action == "rock"):
+                self.player1.add_points(1)
                 return self.player1
             else:
+                self.player2.add_points(1)
                 return self.player2
 
 
