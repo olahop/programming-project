@@ -1,0 +1,28 @@
+"""Class serial player"""
+from random import choice
+from player import Player
+
+
+class SerialPlayer(Player):
+    """Class serial player inherits from abstract class player"""
+
+    last_play = ""
+    plays = ['rock', 'scissors', 'paper']
+
+    def get_class_name(self):
+        return "Serial"
+
+    def action(self, opponent):
+        if self.last_play == "":
+            play = choice(['rock', 'scissors', 'paper'])
+            self.last_play = play
+            return play
+        play = self.plays[(self.plays.index(self.last_play)) + 1]
+        self.last_play = play
+        return play
+
+    def save_result(self, opponent, opponent_action):
+        pass
+
+    def add_points(self, value):
+        self.points += value
