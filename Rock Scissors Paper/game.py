@@ -1,6 +1,6 @@
 
 # single RSP game
-class game():
+class Game():
 
 
     # involved players
@@ -47,6 +47,6 @@ class game():
 
     # This print out the result to the interface
     def __str__(self, player1_action, player2_action, result):
-        print(self.player1.get_class_name() + " " + self.player1 + " choose: " + player1_action + "/n" +
-            self.player2.get_class_name() + " " + self.player2 + " choose: " + player2_action + "/n" +
-            result + " won!")
+        print(self.player1.get_class_name() + " " + self.player1 + ": " + player1_action + ".  " +
+            self.player2.get_class_name() + " " + self.player2 + ": " + player2_action + " -> " +
+            result + " wins!")
