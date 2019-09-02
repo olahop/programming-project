@@ -34,3 +34,6 @@ class MostCommonPlayer(Player):
 
     def add_points(self, value):
         self.points += value
+
+    def get_points(self):
+        return self.points

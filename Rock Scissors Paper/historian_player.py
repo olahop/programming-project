@@ -17,21 +17,22 @@ class HistorianPlayer(Player):
 
     def action(self, opponent):
         decision = {
-            "rock" : 0,
-            "scissors" : 0,
-            "paper" : 0
+            "rock": 0,
+            "scissors": 0,
+            "paper": 0
         }
-        opponent_record = self.opponent_statistics[opponent]
+        opponent_record = self.opponents_statistics[opponent]
         record_length = len(opponent_record)
-        memory_lane = opponent_record[(record_length-self.memory):record_length]
-        for x in range(self.memory, (record_length-self.memory)):
-            if(opponent_record[(x-self.memory):x] == memory_lane):
-                decision[opponent_record[x+1]] += 1
+        memory_lane = opponent_record[(
+            record_length - self.memory):record_length]
+        for play in range(self.memory, (record_length - self.memory)):
+            if opponent_record[(play - self.memory):play] == memory_lane:
+                decision[opponent_record[play + 1]] += 1
         if (decision["rock"] >= decision["scissors"]) and (
-                    decision["rock"] >=decision["paper"]):
+                decision["rock"] >= decision["paper"]):
             return "paper"
         if (decision["scissors"] >= decision["rock"]) and (
-                    decision["scissors"] >= decision["paper"]):
+                decision["scissors"] >= decision["paper"]):
             return "rock"
         return "scissors"
 
@@ -40,3 +41,6 @@ class HistorianPlayer(Player):
 
     def add_points(self, value):
         self.points += value
+
+    def get_points(self):
+        return self.points
