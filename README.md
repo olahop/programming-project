@@ -3,4 +3,5 @@
 
 Project 1 : Morse Decoder
 
-Project 2 : ...
+Project 2 : Rock, Paper & Scissor
+
