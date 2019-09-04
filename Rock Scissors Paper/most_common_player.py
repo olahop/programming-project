@@ -36,8 +36,7 @@ class MostCommonPlayer(Player):
                     decision["scissors"] >= decision["paper"]):
                 return "rock"
             return "scissors"
-        else:
-            return choice(['rock', 'scissors', 'paper'])
+        return choice(['rock', 'scissors', 'paper'])
 
     def save_result(self, opponent, opponent_action):
         opponent_record = []

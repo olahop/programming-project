@@ -30,4 +30,3 @@ class Player(ABC):
     def get_points(self):
         """get points"""
         return self.points
-

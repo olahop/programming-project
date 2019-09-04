@@ -21,7 +21,7 @@ class SerialPlayer(Player):
             play = choice(["rock", "scissors", "paper"])
             self.last_play = play
             return play
-        play = self.plays[((self.plays.index(self.last_play)) + 1)%3]
+        play = self.plays[((self.plays.index(self.last_play)) + 1) % 3]
         self.last_play = play
         return play
 
@@ -33,7 +33,7 @@ class SerialPlayer(Player):
 
     def get_points(self):
         return self.points
-    
+
     def get_name(self):
         """get name"""
         return self.name
