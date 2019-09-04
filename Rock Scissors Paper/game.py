@@ -20,11 +20,11 @@ class Game():
         self.player1_action = self.player1.action(self.player2)
         self.player2_action = self.player2.action(self.player1)
         self.result = self.winner(self.player1_action, self.player2_action)
-        if (self.player1.get_class_name == "Historian") or (
-                self.player1.get_class_name =="Most Common"):
+        if (self.player1.get_class_name() == "Historian") or (
+                self.player1.get_class_name() =="Most Common"):
             self.player1.save_result(self.player2, self.player2_action)
-        if (self.player2.get_class_name == "Historian") or (
-                self.player2.get_class_name =="Most Common"):
+        if (self.player2.get_class_name() == "Historian") or (
+                self.player2.get_class_name() =="Most Common"):
             self.player2.save_result(self.player1, self.player1_action)
         self.__str__()
 

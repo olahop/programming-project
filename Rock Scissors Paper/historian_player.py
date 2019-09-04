@@ -38,7 +38,11 @@ class HistorianPlayer(Player):
         return "scissors"
 
     def save_result(self, opponent, opponent_action):
-        self.opponents_statistics[opponent].append(opponent_action)
+        opponent_record = []
+        if self.opponents_statistics[opponent]:
+            opponent_record = self.opponents_statistics[opponent]
+        opponent_record.append(opponent_action)
+        self.opponents_statistics[opponent] = opponent_record
 
     def add_points(self, value):
         self.points += value
