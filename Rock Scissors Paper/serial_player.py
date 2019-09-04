@@ -21,7 +21,7 @@ class SerialPlayer(Player):
             play = choice(["rock", "scissors", "paper"])
             self.last_play = play
             return play
-        play = self.plays[(self.plays.index(self.last_play)) + 1]
+        play = self.plays[((self.plays.index(self.last_play)) + 1)%3]
         self.last_play = play
         return play
 

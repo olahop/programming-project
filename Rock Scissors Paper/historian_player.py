@@ -30,9 +30,9 @@ class HistorianPlayer(Player):
         record_length = len(opponent_record)
         memory_lane = opponent_record[(
             record_length - self.memory):record_length]
-        for play in range(self.memory, (record_length - self.memory)):
+        for play in range(self.memory, (record_length - 1)):
             if opponent_record[(play - self.memory):play] == memory_lane:
-                decision[opponent_record[play + 1]] += 1
+                decision[opponent_record[play]] += 1
         if (decision["rock"] >= decision["scissors"]) and (
                 decision["rock"] >= decision["paper"]):
             return "paper"
