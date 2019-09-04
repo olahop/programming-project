@@ -4,8 +4,8 @@
 class Game():
     """Singel game class"""
     # involved players
-    player1 = ''
-    player2 = ''
+    player1 = None
+    player2 = None
     player1_action = ''
     player2_action = ''
     result = ''
@@ -19,11 +19,11 @@ class Game():
         """This simulates the game and trigger the printing of result """
         self.player1_action = self.player1.action(self.player2)
         self.player2_action = self.player2.action(self.player1)
-        self.result = self.winner(player1_action, player2_action)
+        self.result = self.winner(self.player1_action, self.player2_action)
         if self.player1.get_class_name == ("Historian" or "Most Common"):
-            self.player1.save_result(self.player2, player2_action)
+            self.player1.save_result(self.player2, self.player2_action)
         elif self.player2.get_class_name == ("Historian" or "Most Common"):
-            self.player2.save_result(self.player1, player1_action)
+            self.player2.save_result(self.player1, self.player1_action)
         self.__str__()
 
     def winner(self, player1_action, player2_action):
@@ -35,21 +35,21 @@ class Game():
         if player1_action == "rock":
             if player2_action == "scissors":
                 self.player1.add_points(1)
-                return self.player1
+                return self.player1.get_name()
             self.player2.add_points(1)
-            return self.player2
+            return self.player2.get_name()
         if player1_action == "scissors":
             if player2_action == "paper":
                 self.player1.add_points(1)
-                return self.player1
+                return self.player1.get_name()
             self.player2.add_points(1)
-            return self.player2
+            return self.player2.get_name()
         if player1_action == "paper":
             if player2_action == "rock":
                 self.player1.add_points(1)
-                return self.player1
+                return self.player1.get_name()
             self.player2.add_points(1)
-            return self.player2
+            return self.player2.get_name()
 
     def __str__(self):
         """This print out the result to the interface"""
@@ -66,5 +66,5 @@ class Game():
             ": " +
             self.player2_action +
             " -> " +
-            self.result.get_name() +
+            self.result +
             " wins!")

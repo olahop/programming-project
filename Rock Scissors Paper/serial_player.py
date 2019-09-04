@@ -7,7 +7,8 @@ class SerialPlayer(Player):
     """Class serial player inherits from abstract class player"""
 
     last_play = ""
-    plays = ['rock', 'scissors', 'paper']
+    plays = ["rock", "scissors", "paper"]
+    name = ''
 
     def __init__(self, name):
         self.name = name
@@ -17,7 +18,7 @@ class SerialPlayer(Player):
 
     def action(self, opponent):
         if self.last_play == "":
-            play = choice(['rock', 'scissors', 'paper'])
+            play = choice(["rock", "scissors", "paper"])
             self.last_play = play
             return play
         play = self.plays[(self.plays.index(self.last_play)) + 1]
@@ -32,3 +33,7 @@ class SerialPlayer(Player):
 
     def get_points(self):
         return self.points
+    
+    def get_name(self):
+        """get name"""
+        return self.name

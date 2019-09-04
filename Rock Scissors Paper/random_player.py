@@ -6,6 +6,8 @@ from player import Player
 class RandomPlayer(Player):
     """Class random player inherits from abstract class player"""
 
+    name = ''
+
     def __init__(self, name):
         self.name = name
 
@@ -13,7 +15,7 @@ class RandomPlayer(Player):
         return "Random"
 
     def action(self, opponent):
-        return choice(['rock', 'scissors', 'paper'])
+        return choice(["rock", "scissors", "paper"])
 
     def save_result(self, opponent, opponent_action):
         pass
@@ -23,3 +25,7 @@ class RandomPlayer(Player):
 
     def get_points(self):
         return self.points
+
+    def get_name(self):
+        """get name"""
+        return self.name

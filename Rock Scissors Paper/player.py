@@ -8,7 +8,6 @@ from abc import ABC, abstractmethod
 class Player(ABC):
     """Abstract Player class"""
     points = 0.0
-    name = ''
 
     @abstractmethod
     def get_class_name(self):
@@ -32,7 +31,3 @@ class Player(ABC):
         """get points"""
         return self.points
 
-    @abstractmethod
-    def get_name(self):
-        """get name"""
-        return self.name
