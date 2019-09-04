@@ -26,12 +26,12 @@ class MultipleGames():
         print("Score:\n" +
               self.player1.get_class_name() +
               " " +
-              self.player1 +
+              self.player1.get_name() +
               ": " +
               str(self.player1.get_points()) +
               "\n" +
               self.player2.get_class_name() +
               " " +
-              self.player2 +
+              self.player2.get_name() +
               ": " +
               str(self.player2.get_points()))

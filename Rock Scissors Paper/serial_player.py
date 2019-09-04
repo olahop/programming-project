@@ -9,6 +9,9 @@ class SerialPlayer(Player):
     last_play = ""
     plays = ['rock', 'scissors', 'paper']
 
+    def __init__(self, name):
+        self.name = name
+
     def get_class_name(self):
         return "Serial"
 

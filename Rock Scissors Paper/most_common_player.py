@@ -8,6 +8,9 @@ class MostCommonPlayer(Player):
 
     opponents_statistics = {}
 
+    def __init__(self, name):
+        self.name = name
+
     def get_class_name(self):
         return "Most Common"
 

@@ -9,8 +9,9 @@ class HistorianPlayer(Player):
     opponents_statistics = {}
     memory = None
 
-    def __init__(self, memory):
+    def __init__(self, name, memory):
         self.memory = memory
+        self.name = name
 
     def get_class_name(self):
         return "Historian"

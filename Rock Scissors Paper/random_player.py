@@ -6,6 +6,9 @@ from player import Player
 class RandomPlayer(Player):
     """Class random player inherits from abstract class player"""
 
+    def __init__(self, name):
+        self.name = name
+
     def get_class_name(self):
         return "Random"
 
