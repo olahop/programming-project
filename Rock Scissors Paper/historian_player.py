@@ -39,8 +39,10 @@ class HistorianPlayer(Player):
 
     def save_result(self, opponent, opponent_action):
         opponent_record = []
-        if self.opponents_statistics[opponent]:
-            opponent_record = self.opponents_statistics[opponent]
+        for previous_opponent in self.opponents_statistics:
+            if opponent == previous_opponent:
+                opponent_record = self.opponents_statistics[opponent]
+                break
         opponent_record.append(opponent_action)
         self.opponents_statistics[opponent] = opponent_record
 
