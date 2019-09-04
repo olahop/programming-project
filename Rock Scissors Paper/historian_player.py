@@ -22,7 +22,11 @@ class HistorianPlayer(Player):
             "scissors": 0,
             "paper": 0
         }
-        opponent_record = self.opponents_statistics[opponent]
+        opponent_record = []
+        for previous_opponent in self.opponents_statistics:
+            if opponent == previous_opponent:
+                opponent_record = self.opponents_statistics[opponent]
+                break
         record_length = len(opponent_record)
         memory_lane = opponent_record[(
             record_length - self.memory):record_length]
