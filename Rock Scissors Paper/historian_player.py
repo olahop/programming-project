@@ -1,4 +1,5 @@
 """Class historian player"""
+from random import choice
 from player import Player
 
 
@@ -27,10 +28,12 @@ class HistorianPlayer(Player):
             if opponent == previous_opponent:
                 opponent_record = self.opponents_statistics[opponent]
                 break
+        if not opponent_record:
+            return choice(["rock", "scissors", "paper"])
         record_length = len(opponent_record)
         memory_lane = opponent_record[(
             record_length - self.memory):record_length]
-        for play in range(self.memory, (record_length - 1)):
+        for play in range(self.memory, record_length):
             if opponent_record[(play - self.memory):play] == memory_lane:
                 decision[opponent_record[play]] += 1
         if (decision["rock"] >= decision["scissors"]) and (
