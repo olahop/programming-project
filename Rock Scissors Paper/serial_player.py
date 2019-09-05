@@ -34,6 +34,9 @@ class SerialPlayer(Player):
     def get_points(self):
         return self.points
 
+    def reset_points(self):
+        self.points = 0
+
     def get_name(self):
         """get name"""
         return self.name
