@@ -30,6 +30,8 @@ class MultipleGames():
             player2_y_values.append(
                 float(self.player2.get_points()) / int(times + 1))
             self.__str__()
+        self.player1.reset_points()
+        self.player2.reset_points()
         plot(x_values, player1_y_values, color='Blue')
         plot(x_values, player2_y_values, color='Red')
         show()

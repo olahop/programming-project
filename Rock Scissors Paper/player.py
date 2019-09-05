@@ -30,3 +30,8 @@ class Player(ABC):
     def get_points(self):
         """get points"""
         return self.points
+    
+    @abstractmethod
+    def reset_points(self):
+        """set points to null"""
+        self.points = 0
