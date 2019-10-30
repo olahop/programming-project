@@ -10,3 +10,5 @@ Project 3 : Cryptography
 Project 4 : Calculator
 
 Project 5 : Keypad
+
+Project 6 : Robot
